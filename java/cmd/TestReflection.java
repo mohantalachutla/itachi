@@ -55,7 +55,7 @@ class MainBlock
 		p.print("\n\n");
 		clsRef.getDeclaredConstructors();
 	}
-	void test(Class cls)
+	void test(Class cls)	
 	{
 		//p.print("getEnclosingClass()"+cls.getEnclosingClass()); // upper class
 		//p.print("getDeclaringClass()"+cls.getDeclaringClass()); // upper class
