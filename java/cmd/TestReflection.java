@@ -4,6 +4,10 @@ import java.lang.reflect.*;
 import java.lang.annotation.*;
 import java.util.function.*;
 
+
+import javax.script.*;
+import jdk.nashorn.api.scripting.*;
+
 @FunctionalInterface
 interface P
 {
@@ -14,71 +18,338 @@ public class TestReflection
 	public static void main(String args[])
 	{
 		MainBlock mb =new MainBlock();
-		mb.main();
+		//mb.declared(ScriptEngine.class);
+		//mb.inherited(ScriptEngineManager.class);
+		//mb.test(Base64.Encoder.class);
+		mb.test(Annotated1.class);
+		
+		
+		//ClassReflect clsRef = new ClassReflect(ScriptEngine.class, ScriptEngineManager.class, ScriptContext.class, Bindings.class, Invocable.class, ClassFilter.class);
+		//clsRef.getMethodsBulk();
 	}
 }
+		/*
+		Class.class, Method.class, Field.class, Constructor.class, 
+		Type.class, Annotation.class, Package.class, Optional.class
+		
+		Collections.class, Arrays.class, List.class, String.class
+		*/
 class MainBlock
 {
 	P p = System.out::println;
-	void main()
+	void inherited(Class cls)
 	{
-		/*
-		Class.class, Method.class, Field.class, Constructor.class, 
-		Type.class, Annotation.class, Package.class,
-		
-		List.class, String.class
-		*/
-		getMethods(Annotation.class);
-		//getConstructors(Method.class);
-		//getFields(Method.class);
-		//getDeclaredMethods(String.class);
-		//getDeclaredFields(String.class);
-		//getDeclaredConstructors(String.class);
+		ClassReflect clsRef = new ClassReflect(cls);
+		clsRef.getMethods();
+		p.print("\n\n");
+		clsRef.getFields();
+		p.print("\n\n");
+		clsRef.getConstructors();
+	}
+	void declared(Class cls)
+	{
+		ClassReflect clsRef = new ClassReflect(cls);
+		clsRef.getDeclaredMethods();
+		p.print("\n\n");
+		clsRef.getDeclaredFields();
+		p.print("\n\n");
+		clsRef.getDeclaredConstructors();
+	}
+	void test(Class cls)
+	{
+		//p.print("getEnclosingClass()"+cls.getEnclosingClass()); // upper class
+		//p.print("getDeclaringClass()"+cls.getDeclaringClass()); // upper class
+		p.print("getClasses");
+		for(Class c : cls.getClasses()) p.print(c);
+		p.print("getDeclaredClasses");
+		for(Class c : cls.getDeclaredClasses()) p.print(c); // inner classes
+		//p.print(cls.getClasses());
+	}
+}
+
+class ClassReflect
+{
+	P p = System.out::println;
+	private Parser parser = null;
+	private Class cls = null;
+	private Class[] clsArr = null;
+	private int ind = 0;
+	ClassReflect()
+	{
+		this.parser = new Parser();
+	}
+	ClassReflect(Class cls)
+	{
+		this.parser = new Parser();
+		this.cls = cls;
+	}
+	ClassReflect(Class... args)
+	{
+		this.parser = new Parser();
+		this.clsArr =new Class[100];
+		this.ind=0;
+		for(Class cls : args)
+		{
+			this.clsArr[this.ind] = cls;
+			ind++;
+		}
+	}
+	void getConstructors()
+	{
+		p.print("\ngetConstructors():\n");
+		for(Constructor c:this.cls.getConstructors())
+		{
+			p.print(c.toString());
+		}
+	}
+	void getDeclaredConstructors()
+	{
+		p.print("\ngetDeclaredConstructors():\n");
+		for(Constructor c:this.cls.getDeclaredConstructors())
+		{
+			p.print(c.toString());
+		}
 	}
 	
-	void getMethods(Class cls)
+	void getFields()
 	{
-		p.print("\n getMethods()\n\n\n");
-		List<String> methods = new ArrayList();
-		for(Method m:cls.getMethods())
+		p.print("\ngetFields():\n");
+		for(Field f:this.cls.getFields())
 		{
-			methods.add(parse(m));
+			p.print(f.toString());
+		}
+	}
+	void getDeclaredFields()
+	{
+		p.print("\ngetDeclaredFields():\n");
+		for(Field f:this.cls.getDeclaredFields())
+		{
+			p.print(f.toString());
+		}
+	}
+	void getMethods()
+	{
+		p.print("\ngetMethods():\n");
+		List<String> methods = new ArrayList();
+		for(Method m:this.cls.getMethods())
+		{
+			methods.add(parser.parse(m));
 		}
 		methods.stream().sorted((s1,s2) -> s1.compareTo(s2)).forEach(s -> p.print(s));
 	}
-	void getDeclaredMethods(Class cls)
+	void getDeclaredMethods()
 	{
-		p.print("\n getDeclaredMethods()\n\n\n");
+		p.print("\ngetDeclaredMethods():\n");
 		List<String> methods = new ArrayList();
-		for(Method m:cls.getDeclaredMethods())
+		for(Method m:this.cls.getDeclaredMethods())
 		{
-			methods.add(parse(m));
+			methods.add(parser.parse(m));
 		}
 		methods.stream().sorted((s1,s2) -> s1.compareTo(s2)).forEach(s -> p.print(s));
 	}
-	
-	void getDeclaredFields(Class cls)
+	void getMethodsBulk()
 	{
-		p.print("\n getDeclaredFields()\n\n\n");
-		List<String> fields = new ArrayList();
-		for(Field f:cls.getDeclaredFields())
+		for(this.ind=0; this.ind <this.clsArr.length; ind++)
 		{
-			fields.add(f.toString());
+			p.print(this.clsArr[this.ind].getName());
+			this.cls = this.clsArr[this.ind];
+			getMethods();
+			p.print("\n\n");
 		}
 	}
+}
+/* class ConstructorReflect
+{
 	
+}
+class FieldReflect
+{
 	
-	String parse(Method m)
+}
+class MethodReflect
+{
+	
+}
+class ParameterReflect
+{
+	
+}
+class TypeReflect
+{
+	
+}
+class AnnotationReflect
+{
+	
+}*/
+
+class Parser
+{
+	String parse(Method obj)
 	{
-		String method = m.getName();
-		String sign	= m.toString();
+		String method = obj.getName();
+		String sign	= obj.toString();
+		String ret1 = sign.substring(0,sign.indexOf(method)-1);
+		String ret = ret1.substring(0,ret1.lastIndexOf(" "));
+		String s = sign.substring(sign.indexOf(method),sign.indexOf(')')+1);
+		return ret +"    "+ s;
+	}
+	String parse(Class obj)
+	{
+		String method = obj.getName();
+		String sign	= obj.toString();
 		String ret1 = sign.substring(0,sign.indexOf(method)-1);
 		String ret = ret1.substring(0,ret1.lastIndexOf(" "));
 		String s = sign.substring(sign.indexOf(method),sign.indexOf(')')+1);
 		return ret +"    "+ s;
 	}
 }
+/*
+values must be initialised with default value.
+void, List, map like type not applicable. Only primitives can be used in annotations.
+*/
 
+/* @Target({ElementType.TYPE,ElementType.METHOD,ElementType.CONSTRUCTOR})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@interface Anno
+{
+	void value();
+} */
+@Target({ElementType.PARAMETER, ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@interface Anno1
+{
+	int iValue() default 0;
+}
+@Target({ElementType.TYPE,ElementType.METHOD,ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE,ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@interface Anno2
+{
+	String sValue() default "nothing";
+}
+@Target({ElementType.TYPE,ElementType.METHOD,ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@interface Anno3
+{
+	String[] sArr() default {"nothing"};
+}
+
+/* @Target({ElementType.TYPE,ElementType.METHOD,ElementType.CONSTRUCTOR, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@interface Anno4
+{
+	List<String> sList();
+}
+@Target({ElementType.TYPE,ElementType.METHOD,ElementType.CONSTRUCTOR, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@interface Anno5
+{
+	Map<String,String> sMap();
+} */
+
+class Parent
+{
+	Parent()
+	{
+		System.out.println("constructor Parent.Parent()");
+	}
+	void parent()
+	{
+		System.out.println("method Parent.Parent()");
+	}
+}
+class Child extends Annotated1
+{
+	Child()
+	{
+		System.out.println("constructor Parent.Parent()");
+	}
+	void child()
+	{
+		System.out.println("method Parent.Parent()");
+	}
+}
+@Anno3(sArr = {"Sharingan","rennegan","byakuyan","jugan"})
+class Annotated1 extends Parent
+{
+	class Inner
+	{
+		Inner()
+		{
+			System.out.println("constructor Inner.inner()");
+		}
+		void inner()
+		{
+			System.out.println("method Inner.inner()");
+		}
+	}
+	
+	@Anno2(sValue = "Itachi")
+	String name;
+	@Anno2
+	String village;
+	
+	@Anno3(sArr = {"Sharingan","rennegan","byakuyan","jugan"})
+	Annotated1()
+	{
+		
+	}	
+	//@Anno1 //not applicable @Target is not set
+	Annotated1(int i, String s)
+	{
+		
+	}
+	
+	@Anno3(sArr = {"Sharingan","rennegan","byakuyan","jugan"})
+	void annotated(@Anno1(iValue = 23) int param1, @Anno3(sArr = {"Sharingan","rennegan","byakuyan","jugan"}) String[] param2)
+	{
+		//@Anno1 //not applicable @Target is not set
+		int local;
+		@Anno2
+		String local1;
+	}
+}
+
+
+/*
+methods of Package.class
+
+public boolean    equals(java.lang.Object)
+public boolean    isAnnotationPresent(java.lang.Class)
+public boolean    isCompatibleWith(java.lang.String)
+public boolean    isSealed()
+public boolean    isSealed(java.net.URL)
+public final native java.lang.Class    getClass()
+public final native void    notify()
+public final native void    notifyAll()
+public final native void    wait(long)
+public final void    wait()
+public final void    wait(long,int)
+public int    hashCode()
+public java.lang.String    getImplementationTitle()
+public java.lang.String    getImplementationVendor()
+public java.lang.String    getImplementationVersion()
+public java.lang.String    getName()
+public java.lang.String    getSpecificationTitle()
+public java.lang.String    getSpecificationVendor()
+public java.lang.String    getSpecificationVersion()
+public java.lang.String    toString()
+public java.lang.annotation.Annotation    getAnnotation(java.lang.Class)
+public java.lang.annotation.Annotation    getDeclaredAnnotation(java.lang.Class)
+public java.lang.annotation.Annotation[]    getAnnotations()
+public java.lang.annotation.Annotation[]    getAnnotationsByType(java.lang.Class)
+public java.lang.annotation.Annotation[]    getDeclaredAnnotations()
+public java.lang.annotation.Annotation[]    getDeclaredAnnotationsByType(java.lang.Class)
+public static java.lang.Package    getPackage(java.lang.String)
+public static java.lang.Package[]    getPackages()
+
+*/
 
 /*
 methods of Class.class

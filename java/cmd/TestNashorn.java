@@ -26,10 +26,10 @@ class MainBlock
 			se = new ScriptEngineManager().getEngineByName("Nashorn");
 			p.print("ScriptEngine -> "+se);
 			//exeScript();
-			exeScriptWithArgs("mohan");
+			//exeScriptWithArgs("mohan");
 			exeFun();
 		}
-		catch(ScriptException |FileNotFoundException e)
+		catch(ScriptException |FileNotFoundException |NoSuchMethodException e)
 		{
 			p.print("Exception ="+e.getMessage());
 		}
@@ -46,9 +46,23 @@ class MainBlock
 		binder.put("initialized",args[0]);
 		se.eval(new FileReader("TestNashornCallable.js"));
 	}
-	void exeFun() throws ScriptException
+	void exeFun() throws ScriptException, NoSuchMethodException, FileNotFoundException
 	{
-		p.print("okay");
+		se.eval(new FileReader("TestNashornInvocable.js"));
+		Invocable js = (Invocable)se;
+		js.invokeFunction("myFun");
+		p.print("\n\n");
+		
+		js.invokeFunction("myFun2","Itachi","Uchiha","sharingan","HiddenLeaf"); // function got overwritten
+		p.print("\n\n");
+		
+		js.invokeFunction("myFun3","Itachi","Uchiha"); // parameters to non-parameterized function
+		//p.print("\n\n");
+		
+		js.invokeFunction("myFun2","Itachi"); 
+		js.invokeFunction("myFun2","Itachi","Uchiha","sharingan","HiddenLeaf"); // // function got overwritten
+		js.invokeFunction("myFun2","Itachi","uchiha");  // parameters missmatch
+		js.invokeFunction("myFun2");  // not enough parameters
 	}
 }
 
@@ -148,4 +162,13 @@ public default java.lang.Object    replace(java.lang.Object,java.lang.Object)
 public default void    forEach(java.util.function.BiConsumer)
 public default void    replaceAll(java.util.function.BiFunction)
 
+*/
+
+/*
+Invocable.java
+
+public abstract java.lang.Object    getInterface(java.lang.Class)
+public abstract java.lang.Object    getInterface(java.lang.Object,java.lang.Class)
+public abstract java.lang.Object    invokeFunction(java.lang.String,java.lang.Object[])
+public abstract java.lang.Object    invokeMethod(java.lang.Object,java.lang.String,java.lang.Object[])
 */
