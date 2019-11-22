@@ -48,6 +48,7 @@ class MainBlock
 		Student std = new Student("pav",1,24);
 		tg.print("helllooo");
 		tg.print(std);
+		tg.printValue(std); //unable to access it's members.
 		tg.print(std.getName());
 		tg.print(std.getRank());
 		
@@ -89,6 +90,11 @@ class Student extends Object
 	{
 		return s.getRank()>20;
 	}
+	@Override
+	public String toString()
+	{
+		return "Name :"+this.getName()+", Id :"+this.getId()+", Rank:";
+	}
 }
 @FunctionalInterface
 interface Check<T>
@@ -104,9 +110,17 @@ interface Check2 extends Check
 
 class TestGeneric<T>
 {
+	TestGeneric()
+	{
+		
+	}
 	public void print(T t)
 	{
 		System.out.println(t);
+	}
+ 	public void printValue(T t)
+	{
+		System.out.println(t.getName());
 	}
 	public T access(T t)
 	{

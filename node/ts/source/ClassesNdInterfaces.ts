@@ -17,7 +17,7 @@ interface Student2
 {
     name : string;
     age? : number; // optional property
-    [prop :number] : any;  // you can defind any number of string indexed properties
+    [prope :number] : any;  // you can defind any number of string indexed properties
 }
 
 interface Str_array // readonly arry, indexed string
@@ -60,8 +60,8 @@ interface  Human extends Alien
 //usage
 
 var alien : Alien;
-alien = (rac,id,native="name") => {  // here native mathes to name's type
-    // Unlike objects, in Interfaces, names doesn't need to match and it will asign types in declaration order
+alien = (rac,id,native="name") => {  // here native mathes to name's type in the declaration
+    // In Interfaces,for functions parameters,  names doesn't need to match and it will asign types in declaration order
     console.log("race ="+rac+"id ="+id+"native ="+native);
     // but if you want to assign value to any name you should use names in the declaration.
 }
@@ -72,6 +72,7 @@ alien("Elfe",2,"unknow"); // 3rd parm should be of name's type.
 //extends
 
 var human : Human;
+var human1 : Human;
 
 human = (rac,id,nativ,name) =>{ // notice names are not equivalent
     console.log("race ="+rac+", id ="+id+", name ="+name+", native ="+nativ);
@@ -79,21 +80,16 @@ human = (rac,id,nativ,name) =>{ // notice names are not equivalent
 }
 human("human",23,"Itachi");
 human("human",23,"Itachi","earth");
-human("huma n",222,"NV","sasuke","earth"); 
+human("human",222,"NV","sasuke","earth"); 
 
-//double indexing
+//double indexing, doubt ?
 interface Shinobi
 {
     [name:string]:string;
     speciality:string; // return type should be subtype of indexed return type.
 }
 var shinobi : Shinobi;
-shinobi.itachi = "Fire Style";
-shinobi.speciality = "mangakyo_sharingan";
-shinobi.susuke = "Lightning Style";
-shinobi.speciality = "eternal_mangakyo_sharinan";
-shinobi.naruto = "Wind Style";
-shinobi.speciality = "nine tails";
+shinobi = {"itachi" : "Fire Style","susuke" : "Lightning Style","naruto" : "Wind Style",speciality:"sharingan"};
 console.log(shinobi);
 
 
@@ -101,9 +97,8 @@ console.log(shinobi);
 class Brand
 {
     name :string;
-    model :Model;
 }
-class Model
+class Model extends Brand
 {
     price :number;
 }

@@ -1,11 +1,19 @@
 import java.util.*;
 import java.util.stream.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.concurrent.*;
+import java.io.*;
+import java.nio.*;
+
+
 import java.lang.reflect.*;
 import java.lang.annotation.*;
-import java.util.function.*;
 
 
 import javax.script.*;
+
+
 import jdk.nashorn.api.scripting.*;
 
 @FunctionalInterface
@@ -18,10 +26,14 @@ public class TestReflection
 	public static void main(String args[])
 	{
 		MainBlock mb =new MainBlock();
-		//mb.declared(ScriptEngine.class);
+		mb.declared(Runtime.class);
 		//mb.inherited(ScriptEngineManager.class);
+		
+		
 		//mb.test(Base64.Encoder.class);
-		mb.test(Annotated1.class);
+		//mb.test(Annotated1.class);
+		
+		//mb.test2();
 		
 		
 		//ClassReflect clsRef = new ClassReflect(ScriptEngine.class, ScriptEngineManager.class, ScriptContext.class, Bindings.class, Invocable.class, ClassFilter.class);
@@ -55,7 +67,7 @@ class MainBlock
 		p.print("\n\n");
 		clsRef.getDeclaredConstructors();
 	}
-	void test(Class cls)	
+	void test(Class cls)
 	{
 		//p.print("getEnclosingClass()"+cls.getEnclosingClass()); // upper class
 		//p.print("getDeclaringClass()"+cls.getDeclaringClass()); // upper class
@@ -64,6 +76,23 @@ class MainBlock
 		p.print("getDeclaredClasses");
 		for(Class c : cls.getDeclaredClasses()) p.print(c); // inner classes
 		//p.print(cls.getClasses());
+	}
+	void test2()
+	{
+		try
+		{
+			ArrayList<Integer> intArrList = new ArrayList<>();
+			intArrList.add(23);
+			p.print(intArrList.getClass().getMethod("subList",int.class,int.class).getReturnType());
+			p.print(intArrList.getClass().getMethod("subList",int.class,int.class).getGenericReturnType());
+			p.print(intArrList.getClass().getMethod("subList",int.class,int.class).getParameters());
+			p.print(intArrList.getClass().getMethod("subList",int.class,int.class).getGenericParameterTypes());
+			p.print(intArrList.getClass().getMethod("subList",int.class,int.class).getGenericExceptionTypes());
+		}
+		catch(Exception e)
+		{
+			p.print(e.getMessage());
+		}
 	}
 }
 
@@ -529,6 +558,7 @@ public void    setInt(java.lang.Object,int)
 public void    setLong(java.lang.Object,long)
 public void    setShort(java.lang.Object,short)
 */
+
 
 /*
 Constructor.class
