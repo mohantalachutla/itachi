@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:ctx="http://www.springframwork.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframwork.org/schema/context
+http://www.springframwork.org/schema/context/spring-context-4.0.xsd">
+
+<bean id="mohant" class="com.itachi.DemoMaven.model.Name">
+<property name="firstName" value="mohan"></property>
+<property name="lastName" value="t"></property>
+</bean>
+<bean id="sureshb" class="com.itachi.DemoMaven.model.Name">
+<property name="firstName" value="suresh"></property>
+<property name="lastName" value="b"></property>
+</bean>
+<bean id="harim" class="com.itachi.DemoMaven.model.Name">
+<property name="firstName" value="hari"></property>
+<property name="lastName" value="m"></property>
+</bean>
+<bean id="subashv" class="com.itachi.DemoMaven.model.Name">
+<property name="firstName" value="subash"></property>
+<property name="lastName" value="v"></property>
+</bean>
+<bean id="mohan" class="com.itachi.DemoMaven.model3.Student">
+<property name="name">
+<ref bean="mohant"></ref>
+</property>
+<property name="progress">
+<ref bean="progress2"></ref>
+</property>
+</bean>
+
+<bean id="suresh" class="com.itachi.DemoMaven.model3.Student">
+<property name="name">
+<ref bean="sureshb"></ref>
+</property>
+<property name="progress" ref="progress1">
+</property>
+</bean>
+<bean id="hari" class="com.itachi.DemoMaven.model3.Student">
+<property name="name">
+<ref bean="harim"></ref>
+</property>
+<property name="progress">
+<ref bean="progress1"></ref>
+</property>
+</bean>
+<bean id="subash" class="com.itachi.DemoMaven.model3.Student">
+<property name="name">
+<ref bean="subashv"></ref>
+</property>
+<property name="progress">
+<ref bean="progress3"></ref>
+</property>
+</bean>
+
+
+<bean id="maths" class="com.itachi.DemoMaven.model3.Subject">
+<property name="id" value="1"></property>
+<property name="name" value="maths"></property>
+</bean>
+<bean id="telugu" class="com.itachi.DemoMaven.model3.Subject">
+<property name="id" value="2"></property>
+<property name="name" value="telugu"></property>
+</bean>
+<bean id="english" class="com.itachi.DemoMaven.model3.Subject">
+<property name="id" value="3"></property>
+<property name="name" value="english"></property>
+</bean>
+<bean id="science" class="com.itachi.DemoMaven.model3.Subject">
+<property name="id" value="4"></property>
+<property name="name" value="science"></property>
+</bean>
+<bean id="social" class="com.itachi.DemoMaven.model3.Subject">
+<property name="id" value="5"></property>
+<property name="name" value="social"></property>
+</bean>
+
+<bean id="progress1" class="com.itachi.DemoMaven.model3.Progress">
+<property name="id" value="1"></property>
+<property name="record">
+<map>
+<entry key-ref="maths" value="90"></entry>
+<entry key-ref="telugu" value="98"></entry>
+<entry key-ref="english" value="88"></entry>
+</map>
+</property>
+</bean>
+
+<bean id="progress2" class="com.itachi.DemoMaven.model3.Progress">
+<property name="id" value="2"></property>
+<property name="record">
+<map>
+<entry key-ref="maths" value="90"></entry>
+<entry key-ref="telugu" value="98"></entry>
+<entry key-ref="social" value="92"></entry>
+</map>
+</property>
+</bean>
+
+<bean id="progress3" class="com.itachi.DemoMaven.model3.Progress">
+<property name="id" value="3"></property>
+<property name="record">
+<map>
+<entry key-ref="science" value="95"></entry>
+<entry key-ref="telugu" value="98"></entry>
+<entry key-ref="english" value="88"></entry>
+</map>
+</property>
+</bean>
+
+</beans>

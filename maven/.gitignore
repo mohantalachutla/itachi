@@ -1,7 +1,6 @@
-#others
-
-#maven/
-
+# maven gitignore
+.metadata/
+Servers/
 *.class
 
 # Mobile Tools for Java (J2ME)

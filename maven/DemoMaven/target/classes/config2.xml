@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:ctx="http://www.springframwork.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframwork.org/schema/context
+http://www.springframwork.org/schema/context/spring-context-4.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<bean id="animal" class="com.itachi.DemoMaven.model2.Animal">
+<constructor-arg value="both"></constructor-arg>
+<constructor-arg value="land"></constructor-arg>
+<constructor-arg value="human"></constructor-arg>
+</bean>
+
+<bean id="animalasp" class="com.itachi.DemoMaven.Aspects.AnimalAsp"></bean>
+
+<bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean>
+</beans>
