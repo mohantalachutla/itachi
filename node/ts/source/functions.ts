@@ -85,4 +85,4 @@ var sumOptional = (val1 : number, val2 : number, val3? : number) : string => // 
     return result;
 }
 console.log("sumOptional()"+sumOptional(23,32));
-console.log("sumOptional()"+sumOptional(23,32,100));
+console.log("sumOptional()"+sumOptional(23,32,100));[]
