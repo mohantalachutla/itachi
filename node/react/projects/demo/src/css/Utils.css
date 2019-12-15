@@ -1,0 +1,39 @@
+#__input_div {
+    display: block;
+    position: relative;
+    width: 70%;
+    height: auto;
+    align-self: center;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-left: 50px;
+}
+#__input_div label {
+    width: 150px;
+    height: auto;
+    margin: 5px 5px 5px 0px;
+
+}
+#__input_div input {
+    width: 200px;
+    height: auto;
+    margin: 5px 0px 5px 5px;
+    text-overflow: ellipsis;
+    text-justify: auto;
+}
+#__error_div{
+    text-align: center;
+    color: red;
+    text-decoration-style: solid;
+}
+#__warn_div{
+    text-align: center;
+    color: yellow;
+    text-decoration-style: solid;
+}
+#__success_div{
+    text-align: center;
+    color: green;
+    text-decoration-style: solid;
+}

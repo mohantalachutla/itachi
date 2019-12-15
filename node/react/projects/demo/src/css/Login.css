@@ -1,0 +1,14 @@
+#__login_frm{
+    padding: 30px;
+    width: 60%;
+    overflow: hidden;
+    margin-top: 100px;
+    margin-left: 150px;
+    background-color: blue;
+}
+#__login_btn{
+    width: 80px;
+    border-radius: 10px;
+    border: 2px solid aliceblue;
+    margin-left: 30%;
+}
