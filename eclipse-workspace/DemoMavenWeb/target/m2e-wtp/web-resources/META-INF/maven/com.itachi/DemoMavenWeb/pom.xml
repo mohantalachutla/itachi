@@ -73,11 +73,11 @@
 	</dependency>
 	
 	<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
-	<dependency>
+<!--	<dependency>
     <groupId>org.glassfish.jersey.media</groupId>
     <artifactId>jersey-media-json-jackson</artifactId>
     <version>2.27</version>
-	</dependency>
+	</dependency>-->
 	
   </dependencies>
   <build>
