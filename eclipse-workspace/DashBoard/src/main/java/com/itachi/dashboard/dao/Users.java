@@ -10,7 +10,7 @@ public class Users {
         Map outMap =null;
 	public Users()
 	{
-            conn = new DataSource().getConnection();
+            conn = DataSource.getConnection();
 	}
 	public Map addUser(Map inputMap)
 	{

@@ -14,22 +14,25 @@ package com.itachi.dashboard.startup;
 import java.sql.*;
 
 public class DataSource {
-    String driver="";
-    String url = "";
-    String username="";
-    String password="";
-    Connection conn=null;
-    public DataSource()
+
+    public static  Connection getConnection()
     {
-        this.driver="oracle.jdbc.driver.OracleDriver";
-        this.url="jdbc:oracle:thin:@localhost:1521:xe";
-        this.username="dashboard";
-        this.password="itachi";
-    }
-    public Connection getConnection()
-    {
+        String driver="";
+        String url = "";
+        String username="";
+        String password="";
+        Connection conn=null;
+        
         try
         {
+        	//driver="oracle.jdbc.driver.OracleDriver";
+        	driver="com.mysql.cj.jdbc.Driver";
+            //url="jdbc:oracle:thin:@localhost:1521:xe";
+            url="jdbc:mysql://localhost:3306/sonoo";
+            username="dashboard";
+            password="itachi";
+            
+            
         	Class.forName(driver);
             conn = DriverManager.getConnection(url,username,password);
             if (conn != null)
