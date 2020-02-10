@@ -7,9 +7,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>DashBoard Maven Webapp</name>
     <url>http://maven.apache.org</url>
-    <properties>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  	</properties>
     <!--    <repositories>
         <repository>
             <id>repo1</id>
@@ -54,39 +51,19 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
-<dependency>
-    <groupId>com.microsoft.sqlserver</groupId>
-    <artifactId>mssql-jdbc</artifactId>
-    <version>7.4.1.jre8</version>
-    <scope>test</scope>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
-<!-- <dependency>
-    <groupId>org.mongodb</groupId>
-    <artifactId>mongo-java-driver</artifactId>
-    <version>3.11.0</version>
-</dependency> -->
-
-<!-- https://mvnrepository.com/artifact/com.datastax.cassandra/cassandra-driver-core -->
-<!-- <dependency>
-    <groupId>com.datastax.cassandra</groupId>
-    <artifactId>cassandra-driver-core</artifactId>
-    <version>3.6.0</version>
-</dependency> -->
-
-   <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.17</version>
-</dependency>
-   
-       
     </dependencies>
     <build>
         <finalName>DashBoard</finalName>
-        <defaultGoal>install</defaultGoal>  
+        <plugins>
+        	<plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-compiler-plugin</artifactId>
+    			<version>3.8.1</version>
+    			<configuration>
+    				<source>1.8</source>
+    				<target>1.8</target>
+    			</configuration>
+			</plugin>
+        </plugins>
     </build>
 </project>
