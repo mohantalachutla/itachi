@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Connect</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+<body onload="javasrcipt:loading();doLogin();">
+    <form method="POST" target="_self">
+        <div> Login yourself</div>
+        <pre id="login_pre" class="container">
+            <input id="username"  type="text" placeholder="Enter username"/>
+            <input id="password" type="password" placeholder="Enter password"/>
+            <button type="submit" class="btn btn-primary" onclick="javascript: doLogin();">Login</button>
+        </pre>
+    </form>
+</body>
+</html>

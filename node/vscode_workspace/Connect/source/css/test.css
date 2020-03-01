@@ -1,0 +1,8 @@
+body{
+    background-color: rgb(41, 84, 223);
+}
+div{
+    border-radius: 5px;
+    border-bottom: black;
+    color: #090909;
+}

@@ -1,0 +1,39 @@
+$primary : blue;
+$secondry: #090f0f;
+$danger: red;
+$success: green;
+$warn: lightgrey;
+
+
+$border_color1:black;
+
+$width:100px;
+
+$text1:black;
+
+div{
+    color: $text1;
+    width: $width;
+
+    input[type='text']{
+        border-radius: 5px;
+        border: 1px solid $secondry;
+        width: 60%;
+        height: auto;
+        &:focus{
+            border: 1px groove $primary;
+        }
+        margin-left: 0px;
+    }
+    input[type='submit']{
+        border-radius: 5px;
+        border: 1px solid $secondry;
+        width: 60%;
+        height: auto;
+        margin-left: 20%;
+        &:hover{
+            border: 1px solid white;
+            background-color: $primary;
+        }
+    }
+}
