@@ -1,6 +1,6 @@
 #Ignored Folders
 databases/
-
+node_modules/
 #Ignored Files
 *.class
 

@@ -21,7 +21,7 @@ div{
         width: 60%;
         height: auto;
         &:focus{
-            border: 1px groove $primary;
+            border: 1px groove $danger;
         }
         margin-left: 0px;
     }
