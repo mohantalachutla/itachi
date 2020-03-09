@@ -1,6 +1,7 @@
 const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Webpack = require("webpack");
 
 const root = path.resolve(__dirname,"../");
@@ -55,34 +56,15 @@ const common = {
             },
             {
                 test: /\.css$/, //if finds any .css file
-                use:[{
-                    loader:"style-loader",
-                    options:{
-                        injectType:"linkTag",
-                        insert:"head"
-                    }
-                }, // loads styled js into html 
+                use:[
+                    MiniCssExtractPlugin.loader,
                     "css-loader", //convert css into commonjs
                 ], // then parse it using these loaders, works bottom to top
             },
             {
                 test:/\.scss$/,
                 use:[
-                    {
-                        loader:"style-loader",
-                        options:{
-                            injectType:"linkTag",
-                            insert:"head",
-                        }
-                    },
-                    {
-                        loader:"file-loader", // creates a file in outputPath with given name
-                        options:{
-                            name:"[name][contenthash].css",
-                            publicPath:"/target/"
-                        }
-                    },
-                    "extract-loader", //extracts html and css code from js with help of loaders
+                    MiniCssExtractPlugin.loader,
                     "css-loader",
                     "sass-loader", // compiles sass into css
                 ]
@@ -115,12 +97,14 @@ const common = {
                 //filename: "signIn.html",
             }
         ), // create a html file, js script tag, css link tag
+        new MiniCssExtractPlugin(),
         new Webpack.ProvidePlugin(
             {
                 _$:"jquery",
                 __:"lodash"
             }
         ) // imports specified nodmodules into a global varibles.
+        
     ],
 
 

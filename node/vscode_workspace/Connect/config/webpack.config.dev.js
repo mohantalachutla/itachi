@@ -21,12 +21,12 @@ const dev = {
     devServer: {
         port : 8090,
         //https:true,
-        contentBase: outputPath, //normal content like index.html will be served from, default CONNECT here
+        contentBase: outputPath, //normal content like index.html will be served from, default CONNECT here, looks for welcome page a.k.a index.html
         //contentBasePublicPath:outputPath,
         //open :true, // opens in browser
         hot : true, // hot reload, without actually reloading the whole page
-        //openPage : "index.html", // initializes page, defualt index.html
-        publicPath: "./target/",
+        //openPage : "index.html", // welcome page, defualt index.html
+        //publicPath: "/target/", // from where server will serve the content, default output.publicPath
         //writeToDisk: true, //default writes to HDD
     },
 
