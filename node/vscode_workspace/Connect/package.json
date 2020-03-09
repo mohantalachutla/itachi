@@ -4,9 +4,10 @@
   "description": "a react based app",
   "main": "./source/index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./config/webpack.config.js",
-    "build": "webpack --config ./config/webpack.config.js",
-    "build:clean": "rm -r target/ && webpack --config ./config/webpack.config.js"
+    "start": "webpack-dev-server --config ./config/webpack.config.dev.js",
+    "build:dev": "webpack --config ./config/webpack.config.dev.js",
+    "build:prod": "webpack --config ./config/webpack.config.prod.js",
+    "clean": "rm -r target/"
   },
   "author": "mohan",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "@babel/preset-env": "^7.8.6",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
     "eslint-loader": "^3.0.3",
@@ -30,7 +32,8 @@
     "typescript": "^3.7.5",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
