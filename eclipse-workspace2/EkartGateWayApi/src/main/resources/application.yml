@@ -1,0 +1,19 @@
+server:
+  port: 5001
+spring:
+  application:
+    name: EKART_GATEWAY
+      
+# eureka client registration  
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:5000/eureka
+  instance:
+    hostname: localhost
+  
+ #actuator config
+    
+    

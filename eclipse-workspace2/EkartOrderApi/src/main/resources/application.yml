@@ -1,0 +1,32 @@
+server:
+  port: 5003
+spring:
+  application:
+    name: ORDER_SERVICE
+  datasource:
+    url: jdbc:h2:mem:itachi #jdbc url
+    platform: h2
+    #username: itachi
+    #password: itachi
+  h2:
+    console:
+      enabled: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:5000/eureka
+  instance:
+    hostname: localhost
+    
+ #sl4j configuration
+logging:
+  level:
+    com.itachi.account: DEBUG
+  pattern:
+    console: "[%-5p] [%d{dd HH:mm:ss}] [%F#%L] [%3C-%M] -%m%n"  #p priority, d{} date{formate}, F filename, L lineNo, C FullClass, M method, m msg, n newline
+    file: "[%-5p] [%d{dd HH:mm:ss}] [%F#%L] [%3C-%M] -%m%n" 
+  file:
+    path: ./SL4jLog/
+    name: log.txt
