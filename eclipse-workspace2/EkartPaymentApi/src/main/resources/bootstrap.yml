@@ -1,0 +1,11 @@
+#loads before application.yml
+spring:
+  application:
+    name: ekart-payment
+  cloud:
+    config:
+      uri: http://localhost:5001
+      
+  profiles:
+    active:
+    - dev

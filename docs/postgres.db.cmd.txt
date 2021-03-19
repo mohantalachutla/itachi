@@ -1,0 +1,19 @@
+#sudo login postres
+sudo -u postgres psql
+# W for passwd prompt
+#psql -U name -d dbname -W
+
+
+
+
+
+\command   name
+\?  \ comand help
+\h  query help
+\q  quit
+\l  list databases
+\d describe relations
+\dL sheama
+\dt table
+\dL proc
+\ds sequence

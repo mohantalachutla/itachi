@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import com.itachi.ekart.order.model.OrderDetails;
 
 @SpringBootConfiguration
-@EnableAutoConfiguration
 public class Utility {
 
 	@Bean

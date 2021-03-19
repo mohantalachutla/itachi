@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -57,7 +56,7 @@ public class OrderService {
 																									// setters
 
 		// generating requestEntity
-		reqEnt4pd = new RequestEntity<PaymentDetail>(pd, httpHeaders, HttpMethod.POST, new URI("http://localhost:5004/payment/"));
+		reqEnt4pd = new RequestEntity<PaymentDetail>(pd, httpHeaders, HttpMethod.POST, new URI("http://localhost:5007/payment/"));
 		
 		// generation RequestEntity
 		restTemplate.exchange(reqEnt4pd, PaymentDetail.class);

@@ -1,0 +1,9 @@
+ps -ef | grep elasticsearch # -e every proces, -f full format
+ps -v
+ps -o PID
+PS -o "%p %cpu"
+
+
+# -v prints pts terminal procs, -o =format(pid,PID,%p), -j job format, 
+-t =pts/0 terminal, -a all process even agents, 
+-C =type of commonds running(java), -U =user

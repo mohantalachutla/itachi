@@ -2,6 +2,8 @@ package com.itachi.ekart.payment.controller;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +20,18 @@ import com.itachi.ekart.payment.model.PaymentDetails;
 import com.itachi.ekart.payment.service.PaymentService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api("Payment Endpooint")
 @RestController
-@RequestMapping("/payment/")
+@RequestMapping("/payment")
 public class Controller {
+	private static Logger logger = LoggerFactory.getLogger(Controller.class);
 	@Autowired
 	PaymentService service;
 	Optional<PaymentDetails> pd;
 	
+	@ApiOperation("make payment")
 	@PostMapping(value="/",consumes= {MediaType.APPLICATION_JSON_VALUE},produces= {MediaType.APPLICATION_JSON_VALUE})
 	public PaymentDetails postPayment(@RequestBody PaymentDetails pd)
 	{
@@ -40,6 +45,7 @@ public class Controller {
 		}
 		return pd;
 	}
+	@ApiOperation("get payment by id")
 	@GetMapping(value="/{id}")
 	public Optional<PaymentDetails >getPayment(@PathVariable String id)
 	{
@@ -53,6 +59,7 @@ public class Controller {
 		}
 		return pd;
 	}
+	@ApiOperation("delete payment by id")
 	@DeleteMapping(value="/{id}")
 	public Optional<PaymentDetails >deletePayment(@PathVariable String id)
 	{
@@ -66,10 +73,12 @@ public class Controller {
 		}
 		return pd;
 	}
-	
-	@RequestMapping(value="/")
-	public ResponseEntity<String> defaulter()
+	@ApiOperation("test")
+	@GetMapping(value="/test")
+	public ResponseEntity<String> test()
 	{
-		return ResponseEntity.ok("Ekart Payment Api");
+		String msg = "Ekart Payment Api";
+		logger.debug(msg);
+		return ResponseEntity.ok(msg);
 	}
 }

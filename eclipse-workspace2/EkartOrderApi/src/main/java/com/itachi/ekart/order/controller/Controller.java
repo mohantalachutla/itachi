@@ -28,17 +28,15 @@ import io.swagger.annotations.ApiOperation;
 
 @Api("OrderEndPoint")
 @RestController
-@RequestMapping("/order/")
+@RequestMapping("/order")
 public class Controller {
 
+	private static Logger logger = LoggerFactory.getLogger(Controller.class);
 	@Autowired
 	OrderService service;
-	Logger logger = LoggerFactory.getLogger(Controller.class);
 	
-	@Lazy  //cause we need to create a object in controller
 	@Autowired
 	Map<String,Object>	mResponse;
-	@Lazy
 	List<OrderRequestHandler> lResponse;
 	List<OrderDetails> lResponse2;
 	Optional<OrderRequestHandler> opRh;
@@ -49,7 +47,7 @@ public class Controller {
 	HttpHeader=& MultiValueMap*/
 	
 	
-	@ApiOperation("booking order")
+	@ApiOperation("book order")
 	@PostMapping(value="/",consumes= {MediaType.APPLICATION_JSON_VALUE},produces= {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<OrderRequestHandler>  bookOrder(@RequestBody OrderRequestHandler rh)
 	{
@@ -65,7 +63,7 @@ public class Controller {
 	
 	@ApiOperation("get all order details")
 	@GetMapping(value="/")
-	public List<OrderDetails>  getAllOrderDetails()
+	public ResponseEntity<List<OrderDetails>>  getAllOrderDetails()
 	{
 		logger.debug("\n\n invoking getAllOrderDetails");
 		try {
@@ -74,11 +72,11 @@ public class Controller {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		return lResponse2;
+		return ResponseEntity.ok(lResponse2);
 	}
 	@ApiOperation("delete all order details")
 	@DeleteMapping(value="/")
-	public void  deleteAllOrderDetails()
+	public ResponseEntity<String>  deleteAllOrderDetails()
 	{
 		logger.debug("\n\n invoking getAllOrderDetails");
 		try {
@@ -87,10 +85,11 @@ public class Controller {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		return ResponseEntity.ok("OK");
 	}
 	@ApiOperation("get order details by id")
 	@GetMapping(value="/{id}")
-	public Optional<OrderDetails>  getOrderDetailsById(@PathVariable String id)
+	public ResponseEntity<Optional<OrderDetails>>  getOrderDetailsById(@PathVariable String id)
 	{
 		logger.debug("\n\n invoking getOrderDetailsById");
 		try {
@@ -100,11 +99,11 @@ public class Controller {
 			e.printStackTrace();
 		}
 		
-		return orderDetails;
+		return ResponseEntity.ok(orderDetails);
 	}
 	@ApiOperation("delete order details by id")
 	@DeleteMapping(value="/{id}")
-	public void  deleteOrderDetailsById(@PathVariable String id)
+	public ResponseEntity<String>  deleteOrderDetailsById(@PathVariable String id)
 	{
 		logger.debug("\n\n invoking getOrderDetailsById");
 		try {
@@ -113,5 +112,12 @@ public class Controller {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		return ResponseEntity.ok("OK");
+	}
+	@ApiOperation("test")
+	@GetMapping(value="/test")
+	public ResponseEntity<String> test()
+	{
+		return ResponseEntity.ok("Ekart Order Api");
 	}
 }

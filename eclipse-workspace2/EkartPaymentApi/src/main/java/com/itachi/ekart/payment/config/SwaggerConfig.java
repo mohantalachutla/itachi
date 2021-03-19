@@ -2,7 +2,7 @@ package com.itachi.ekart.payment.config;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -13,8 +13,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootConfiguration
-@EnableAutoConfiguration
 @EnableSwagger2
+@RefreshScope
 public class SwaggerConfig {
 
 	// lives at http://localhost:5004/swagger-ui.html

@@ -1,0 +1,11 @@
+# loads after bootstrap.yml
+server:
+  port: 5002 
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+  
+    
+    
