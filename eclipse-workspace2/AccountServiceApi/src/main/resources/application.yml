@@ -1,0 +1,24 @@
+server:
+  port: 8000
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:itachi
+  application:
+    name: ACCOUNT_SERVICE
+    
+#sl4j configuration
+logging:
+  level:
+    com.itachi.account: DEBUG
+    org.springframework.web: ERROR
+  pattern:
+    console: "[%-5p] [%d{dd HH:mm:ss}] [%F#%L] [%3C-%M] -%m%n"  #p priority, d{} date{formate}, F filename, L lineNo, C FullClass, M method, m msg, n newline
+    file: "[%-5p] [%d{dd HH:mm:ss}] [%F#%L] [%3C-%M] -%m%n" 
+  file:
+    path: ./
+    name: SL4jLog/log.txt

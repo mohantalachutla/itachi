@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:ctx="http://www.springframework.org/schema/context"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xsi.schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframwork.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframwork.org/schema/mvc
+http://www.springframwork.org/schema/mvc/spring-mvc-2.5.xsd
+http://www.springframwork.org/schema/context
+http://www.springframwork.org/schema/context/spring-context-2.5.xsd">
+	<annotation-driven/>
+	<ctx:annotation-config></ctx:annotation-config>
+	<ctx:component-scan base-package="com.itachi.dashboard"></ctx:component-scan>
+</beans>

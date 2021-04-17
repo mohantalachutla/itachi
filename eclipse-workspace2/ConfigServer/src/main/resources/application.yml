@@ -1,0 +1,16 @@
+server:
+  port: 5001
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${HOME}/mohan/git/ConfigServer
+          default-label: main
+          
+management:
+  endpoint:
+    health:
+      show-details: always

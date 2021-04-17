@@ -1,7 +1,7 @@
-#others
+#Ignored Folders
+databases/
 
-maven/
-
+#Ignored Files
 *.class
 
 # Mobile Tools for Java (J2ME)

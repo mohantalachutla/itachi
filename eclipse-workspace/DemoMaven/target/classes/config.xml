@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:ctx="http://www.springframwork.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframwork.org/schema/context
+http://www.springframwork.org/schema/context/spring-context-4.0.xsd">
+	
+<!-- <ctx:annotation-config></ctx:annotation-config>
+<ctx:component-scan base-package="com.itachi.DemoMaven"></ctx:component-scan> -->
+
+<bean id="name" class="com.itachi.DemoMaven.model.Name">
+<property name="firstName" value="itachi"></property>
+<property name="lastName" value="uchiha"></property>
+</bean>
+
+<bean id="village" class="com.itachi.DemoMaven.model.Village">
+<property name="leader" value="hashirama"></property>
+<property name="name" value="hidden leaf"></property>
+</bean>
+
+<bean id="clann" class="com.itachi.DemoMaven.model.Clan">
+<property name="name" value="itachi"></property>
+<property name="speciality" value="sharingan"></property>
+<property name="village">
+<ref bean="village"></ref>
+</property>
+</bean>
+
+<bean id="shinobi" class="com.itachi.DemoMaven.model.Shinobi">
+<constructor-arg value="lightening"></constructor-arg>
+<constructor-arg >
+<ref bean="name"></ref>
+</constructor-arg>
+<constructor-arg>
+<ref bean="clann"></ref>
+</constructor-arg>
+</bean>
+</beans>

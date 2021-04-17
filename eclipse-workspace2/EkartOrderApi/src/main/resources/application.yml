@@ -1,0 +1,3 @@
+#loads afer bootstrap.yml
+server:
+  port: 5006

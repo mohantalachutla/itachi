@@ -1,0 +1,9 @@
+#__app{
+    display: block;
+    width: 70%;
+    height: 100%;
+    position: absolute;
+    align-self: auto;
+    border: 5px solid aliceblue;
+    margin: 0% 20%;
+}

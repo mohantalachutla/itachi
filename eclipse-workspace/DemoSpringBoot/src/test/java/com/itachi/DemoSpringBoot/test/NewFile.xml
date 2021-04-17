@@ -1,0 +1,16 @@
+<students>
+	<student>
+		<name>itachi</name>
+		<id>1</id>
+		<marks>
+			<sub>
+				<name>math</name>
+				<score>98</score>
+			</sub>
+			<sub>
+				<name>science</name>
+				<score>97</score>
+			</sub>
+		</marks>
+	</student>
+</students>

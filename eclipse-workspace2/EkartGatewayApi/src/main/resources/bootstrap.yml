@@ -1,0 +1,7 @@
+#loads before application.yml
+spring:
+  application:
+    name: ekart-gateway
+  cloud:
+    config:
+      uri: http://localhost:5001

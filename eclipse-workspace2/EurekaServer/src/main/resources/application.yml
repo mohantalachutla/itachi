@@ -1,0 +1,13 @@
+server:
+  port: 5000 #by default eureka server runs at 8761
+
+spring:
+  application:
+    name: EUREKA_SERVICE # application name
+
+eureka:
+  client:
+    fetch-registry: false # client which register to server should also fetch other clients register to the same server
+    register-with-eureka: false #don't register as client cause its the server
+  dashboard:
+    enabled: true #default true, page lives at /
