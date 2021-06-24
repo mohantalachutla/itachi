@@ -1,0 +1,45 @@
+html{
+    margin: 0;
+    border: 0;
+    background-color: silver;
+}
+.grid-container{
+    color:blue;
+    display: grid;
+    display: -moz-grid; 
+    grid-template-columns: 30% 70%;/*repeat(2,1fr);*/ /* specifying column and width*/
+    grid-auto-rows: minmax(30vh,auto); /*auto rows*/
+    grid-template-areas: 
+        "header header"
+        "sidebar head"
+        "sidebar body" 
+        "sidebar body"; /* arrage areas. similar areas will be combined. only last elm will be displayed*/
+    grid-gap: 1vh 1vw;
+}
+.grid{
+    background-color: slateblue;
+    justify-content: center;
+    align-content: center;
+    min-height: 30vh;
+}
+.grid-1{
+    grid-area: header; /*defining an variable*/
+}
+.grid-2{
+    grid-area: head;
+}
+.grid-3{
+    grid-area: sidebar;
+}
+.grid-4{
+    grid-area: body;
+}
+.grid-5{
+    grid-area: body;
+}
+.grid-6{
+    grid-area: body;
+}
+.grid-7{
+    grid-area: body;
+}

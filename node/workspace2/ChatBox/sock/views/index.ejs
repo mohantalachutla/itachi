@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>
+        Chat app
+    </title>
+    <script type="javascript" src="http://localhost:3100/socket.io/socket.io.js"> 
+        let socket = io("http://localhost:3100");
+    </script>
+
+    <script>
+        let sendContainer = document.getElementById("sendContainer");
+        let submitForm = (e) =>
+        {
+            e.preventDefault();
+            let msgtxt = document.querySelector("#message");
+            let messageContainer = document.getElementById("messageContainer");
+            alert(msgtxt?.value);
+            if (msgtxt?.value) {
+                let li = document.createElement("li");
+                li.textContent = msgtxt?.value;
+                messageContainer.append(li);
+                alert('append');
+                //socket.emit("message", msgtxt);
+                msgtxt.value = '';
+            }
+        }
+        console.debug(sendContainer)
+        sendContainer?.addEventListener("submit",submitForm);
+        //document.getElementById("submit").addEventListener("click",submitForm)
+        
+    </script>
+</head>
+
+<body>
+    <ul id="messageContainer">
+        <li> all messages</li>
+    </ul>
+
+    <form id="sendContainer">
+        <input type="text" name="message" id="message" />
+        <input type="submit" name="submit" id="submit" value="send" />
+    </form>
+
+</body>
+
+</html>

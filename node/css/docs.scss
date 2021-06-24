@@ -1,0 +1,102 @@
+// variable definition
+$bgcolor: cyan;
+//variable usage
+body {
+    background-color: #{$bgcolor}; // interpolation, expression
+}
+// abc.css
+@import 'abc.css'; // imports .css
+//xyz.scss
+@use 'xyz'; // imports scss,sass
+@use 'xyz' as app-; // imports selector with starts with app-
+@use 'xyz' with( $bg: red); // overrides var,func,mixins
+div{
+    background-color: xyz.$bg;
+}
+
+// mixin is group of rules which can be embeded
+@mixin status-button($status,$color) {
+    // dynamic class
+    .#{$status}-btn{
+        background-color: #{$color};
+    }
+}
+// mixin  usage
+@include status-button('active', green); // gives .active-btn with color green
+//function
+@function sum($args...){
+    @warn 'summing'; // @debug, @error
+    $result:0;
+    @each $arg in $args{ //each loop
+        @if $arg > 0{
+            $result: $result + $arg;
+        }
+    }
+    @return $result;
+}
+$res: sum(23,24,23);
+//@for $i from 1 through 3
+//@while true
+
+nav{
+    display : inline;
+    width :100%;
+    height: 2.5rem;
+    // joins with parent selects like        parent operator child
+    // operator like >,~,+
+    // no operator means space which is descedent selector
+    ul{
+        list-style:none;
+        float: right;
+       li > a {
+           display:inline-block;
+           // & parent selector is needed otherwise treated as operator which puts space between them
+           &:hover{
+               color:blue;
+           }
+           //prefix: is not selector but a property which joins with - 
+           text: {
+            decoration:none;
+            align:center
+        }
+       } 
+    }
+    // & parent selector
+    &-logo{
+        position: absolute;
+        right:0px;
+    }
+    // ownchild selector
+    >a{
+        //prefix: is not selector but a property which joins with - 
+        text: {
+            decoration:none;
+            align:center
+        }
+    }
+}
+// % is like a class will not be transpilled into css, means ignored but can be embeded like a mixin
+.success, %successed{
+    background-color: green;
+}
+.done{
+    @extend successed;
+}
+//_m.scss
+// file name starts with _ will be ignored but can be imported with @use
+
+//forward or exports one more files as bundel which can be import using @use
+//z.scss
+@forward  '/src/_x';
+@forward  '/src/y';
+
+//a.scss
+@use 'z'
+
+//list (1 2 3)
+//map (2:3, 3:5
+
+//@at-root
+
+// sass libraries
+

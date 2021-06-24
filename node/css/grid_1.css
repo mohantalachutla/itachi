@@ -1,0 +1,51 @@
+html{
+    font-size: 16px;
+    text-decoration: none;
+    direction: ltr;
+    margin: 0px;
+    padding:0px;
+    border:0px;
+    box-sizing: border-box;
+    color: black;
+}
+.grid-container{
+    position: relative;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    justify-items: center; 
+    /*justfy arranges on main axis*/
+    /* justify-content and align-content are for flex. aixis changes based on flex-direction. items are for grid*/
+    align-items: stretch;    
+    /*align arranges on cros axis*/    
+    
+}
+.grid{
+    width: 70px;
+    height: 70px;
+    background-color: slateblue;
+}
+.grid-1{
+    grid-column: 1 / -1; /* if 3 column then start would be 1 and end would be 4 and -1*/
+}
+.grid-2{
+    grid-column-start: 2;
+    grid-column: span 2; /* occupies 2 colums*/
+}
+.grid-3{
+    grid-column-start: 2;
+}
+.grid-4{
+    grid-row-start: 3;
+    grid-row-end: -1;
+}
+.grid-5{
+    grid-column-start: 4;
+}
+.grid-6{
+    grid-column-start: 2;
+}
+.grid-7{
+    grid-column-start: 4;
+}

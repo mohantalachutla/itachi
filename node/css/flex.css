@@ -1,0 +1,99 @@
+html{
+    font-size: 16px;
+}
+body
+{
+    background-color: silver;
+}
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    text-decoration: none;
+    list-style: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header{
+    display: block;
+    border: 2px solid whitesmoke;
+}
+nav.navbar{
+    position: relative;
+    background-color: rgba(70, 28, 201, 0.842);
+    height: 2rem;
+}
+nav.navbar .navchkbtn{
+    display: inline;
+    margin-left: .4em;
+    display: none;
+}
+#navchkbtn, #navchkbtn ~ label{
+    display: none;
+}
+#navchkbtn:checked ~ ul{
+    display: block;
+}
+nav.navbar>label{
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin-left: 1em;
+}
+nav.navbar>ul{
+    right: 2em;
+    display: inline-flex;
+    float: right;
+    /* justify-content: space-evenly; */
+}
+/* we can also achieve this with float and inline-block on li*/
+nav.navbar>ul>li{
+    margin-left: 1em;
+    justify-content: center;
+}
+
+nav.navbar>ul a{
+    display: block;
+    border: 1px solid none;
+    border-radius: .2em;
+    padding: .3em .5em;
+    background-color: rgba(54, 20, 206, 0.87);
+    color: white;
+    text-align: center;
+} 
+nav.navbar>ul a:hover{  
+    display: block;
+    border: 1px solid white;
+    background-color: rgb(0, 0, 255);
+}
+.left{
+    left: 0;
+}
+.right{
+    right: 0;
+}
+.sidebar{
+    max-width: 20%;
+    min-width: 150px;
+    height: calc(100vh - 3.6em);
+    top: 2em;
+    background-color:rgba(0, 0, 0, 0.788);
+}
+@media (max-width:450px) {
+    #navchkbtn ~ label{
+        display: block;
+    }
+    nav.navbar>ul{
+        position: absolute;
+        top: 2.1rem;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        display: none;
+        margin:0;
+        padding: 0;
+        /* justify-content: space-evenly; */
+    }
+    nav.navbar>ul>li{
+        margin: 0;
+    }
+}
