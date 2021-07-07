@@ -14,7 +14,7 @@ b; // just using it, will not throw an error, no use
 var b=0; // can use multiple times;
 console.log(b) //0
 
-c = 2; // no need to declare it when initializing
+c = 2; // no need to declare it when initializing, in "use strict" mode will throw an error
 console.log(c); //2
 
 //console.log(d) // Reference error: can not used before its declaration. meaning hoisted, but can not be accessed
@@ -26,40 +26,7 @@ const e=4; // hoisted
 //always needs to initialized // syntax error
 
 
-class Animal{
-    static _a()
-    {
-        console.log("_a() called")
-    }
-    a()
-    {
-        console.log("a() called")
-    }
-}
 
-
-class Cat extends Animal{
-    static _c(){
-        console.log("_c() called")
-    }
-    c(){
-        console.log("c() called")
-    }
-}
-
-var animal = new Animal()
-var cat = new Cat()
-
-console.log(Animal._a())
-console.log(animal.a())
-
-
-
-console.log(animal.__proto__ === Animal.prototype)
-console.log(Cat.__proto__ === Animal)
-console.log(Cat.prototype.__proto__ === Animal.prototype)
-console.log(cat.__proto__ === Cat.prototype)
-console.debug(cat)
 
 
 Done(); // done called cause of hoisting
@@ -68,4 +35,4 @@ function Done(){
 }
 var done =new Done();  // done called
 console.debug(Done()) // undefined, return type is void
-console.debug(done)
+console.debug(done) // no output
