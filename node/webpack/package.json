@@ -1,0 +1,15 @@
+{
+  "name": "webpack-bundler",
+  "version": "1.0.0",
+  "description": "Buldle web elements",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mohan",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
