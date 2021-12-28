@@ -1,0 +1,65 @@
+docker build -t <USER>/<IMAGE-NAME>:<V> .    -- . is the location of the Dockerfile
+-- docker build run cmd from Dockerfile, to build images only
+docker-compose up -- runs from docker-compose.yml -- orchestrate multiple containers like K8 a little bit
+docker-compose down
+
+docker image ls
+
+docker run --name <CONTAINER-NAME> --network <NETWORK-NAME> --link <LINKED-SERVICE-NAME> -p <HPORT>:<CONTAINERPORT> <IMAGE-NAME>
+-d  -- detach mode background
+-env <KEY>=<VALUE>
+-it -- init terminal
+bash -c <COMMAND>  -- command to be exicuted in the container
+--link --dependent service called in the current service, like databases, accessed by <SERVICE-NAME:PORT>
+-v host-path:contaner-path   -- hostpath mounted at container path
+-v <VOLUME-NAME>:container-path
+-P port forwards all the exposed ports to random ports
+
+docker ps -a
+
+docker container ls
+
+
+docker inspect <CONTAINER-UUID>
+
+docker exec -it <CONTAINER-NAME> bash -c <COMMAND>
+
+docker network create --driver <DRIVER> <NETWORK-NAME>
+none
+host
+bridge  -- between 
+overlay   -- between container of different hosts
+
+docker volume create --mount source <SOURCE> target <TARGET> <VOLUME-NAME>
+
+$ docker login --username=yourhubusername --email=youremail@company.com
+
+*********possible commands ***********
+app
+image
+container
+network
+volume
+login
+logout
+pull
+push
+
+
+
+********possible sub commands************
+
+--------basicly represets containers
+create
+ls
+rm    -- removes
+rmi	-- remove images
+start
+pause
+kill
+logs
+inspect
+attach
+diff
+tag
+
